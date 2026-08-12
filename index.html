@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Hashes de Aplicaciones - Práctica Cifrado</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#0f172a; color:#e2e8f0; display:flex; flex-direction:column; align-items:center; padding:40px;}
+  h1 { color:#38bdf8;}
+  .botones { display:flex; gap:16px; margin:24px 0; flex-wrap:wrap; justify-content:center;}
+  button { padding:12px 20px; font-size:16px; border:none; border-radius:8px; background:#2563eb; color:white; cursor:pointer; }
+  button:hover { background:#1d4ed8;}
+  #resultado { background:#1e293b; padding:20px; border-radius:10px; min-width:320px; max-width:90%; word-break:break-all;}
+  .hash-line { margin:8px 0;}
+  .hash-label { color:#94a3b8; font-weight:bold;}
+</style>
+</head>
+<body>
+  <h1>Verificador de Hashes</h1>
+  <p>Selecciona una aplicación para ver sus hashes MD5, SHA1 y SHA256</p>
+  <div class="botones">
+    <button onclick="mostrarHash('plink')">Plink.exe</button>
+    <button onclick="mostrarHash('putty')">PuTTY.exe</button>
+    <button onclick="mostrarHash('virtualbox')">VirtualBox Installer</button>
+  </div>
+  <div id="resultado">Selecciona una aplicación arriba para ver sus hashes.</div>
+
+  <script>
+    const hashes = {
+      plink: { nombre: "Plink.exe", md5: "663B3C6559DAB0E0866E0EDFAAD9516D", sha1: "3681353B664F6E2B5590AF0A8C7F6A9254629F5E", sha256: "E5621FFE4879F0EC39ED40F688DB9399C2D43054D41EF14472FA335C4693B915" },
+      putty: { nombre: "PuTTY.exe", md5: "751ADC0B31A17F79D479C3B7A274C6DA", sha1: "5A6860BC33F3E965C333AE8C593B90AD6A9459F1", sha256: "7056CA2F6A9F3C525845B116C7BF564CED3284A4083EA80D7E9EF51A16F612C4" },
+      virtualbox: { nombre: "VirtualBox-7.0.8-Installer.exe", md5: "5277068968032AF616E7E4CC86F1D3C2", sha1: "6E3E2912D2131BB249F416088EE49088AB841580", sha256: "8A2DA26CA69C1DDFC50FB65EE4FA8F269E692302046DF4E2F48948775BA6339A" }
+    };
+
+    function mostrarHash(app) {
+      const data = hashes[app];
+      document.getElementById('resultado').innerHTML = `
+        <h3>${data.nombre}</h3>
+        <div class="hash-line"><span class="hash-label">MD5:</span> ${data.md5}</div>
+        <div class="hash-line"><span class="hash-label">SHA1:</span> ${data.sha1}</div>
+        <div class="hash-line"><span class="hash-label">SHA256:</span> ${data.sha256}</div>
+      `;
+    }
+  </script>
+</body>
+</html>
